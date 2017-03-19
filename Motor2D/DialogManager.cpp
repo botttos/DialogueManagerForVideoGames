@@ -76,7 +76,6 @@ bool DialogManager::Dialog(const int id)
 			}
 		}
 	}
-	//
 	return false;
 }
 

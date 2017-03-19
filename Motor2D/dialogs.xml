@@ -3,6 +3,7 @@
   
    <npc id="1" state ="1">
      <dialogue state="0">
+       <text value ="Hi! #{PlayerName} HI YO BRO? IM TESTING"/>
        <options interaction="1">
          <option action="1">I love doing research!</option>
          <option action="2">Research is so hard :(</option>
