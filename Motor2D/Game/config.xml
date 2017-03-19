@@ -1,0 +1,94 @@
+<!-- Config file for the game -->
+
+<config>
+  <app framerate_cap="">
+    <title>Pathfinding Test</title>
+    <organization>UPC</organization>
+    <cvars>
+      <cvar name ="max_fps" description ="Caps the FPS" value="60" min="0" max="120" type="int" read_only="false"/>
+    </cvars>
+  </app>
+	
+  <renderer>
+    <vsync value="true"/>
+    <cvars>
+      <cvar name ="vsync" description ="Active/Desactive vsync" value="1" min="0" max="1" type="int" read_only="false"/>
+    </cvars>
+  </renderer>
+
+  <fonts>
+    <default_font file="fonts/open_sans/OpenSans-Regular.ttf" size="12"/>
+  </fonts>
+
+  <gui>
+    <atlas file="gui/atlas.png"/>
+  </gui>
+    
+  <window> 
+    <resolution width="552" height="448" scale="2"/>
+    <margin horizontal="1000" vertical="900"/>
+    <fullscreen value="false"/>
+    <borderless value="false"/>
+    <resizable value="true"/>
+    <fullscreen_window value="false"/>
+  </window>
+
+  <file_system>
+    <path>data.zip</path>
+  </file_system>
+
+  <map>
+    <folder>maps/</folder>
+  </map>
+
+  <sceneManager>
+    <scenes folder = "scenes/">
+      <test name = "Test Scene" file = "kakariko.xml"/>
+      <menu name = "menu" file = "kakariko.xml"/>
+      <kakariko name = "kakariko" file = "kakariko.xml"/>
+      <forest name = "forest" file = "kakariko.xml"/>
+      <greenZone1 name = "greenZone1" file = "kakariko.xml"/>
+      <greenZone2 name = "greenZone2" file = "kakariko.xml"/>
+      <witchHouse name = "witchHouse" file = "kakariko.xml"/>
+      <desert1 name = "desert1" file = "kakariko.xml"/>
+      <desert2 name = "desert2" file = "kakariko.xml"/>
+      <dunes name = "dunes" file = "kakariko.xml"/>
+      <temple name = "temple" file = "kakariko.xml"/>
+      <dungeon name = "dungeon" file = "kakariko.xml"/>
+      <masterSword name = "masterSword" file = "kakariko.xml"/>
+      <castleOut name = "castleOut" file = "kakariko.xml"/>
+      <castleIn name = "castleIn" file = "kakariko.xml"/>
+      <boss name = "boss" file = "kakariko.xml"/>
+    </scenes>
+  </sceneManager>
+  
+  <game>
+    <entityAttributes folder = "attributes/">
+      <link file = "player_attributes.xml"/>
+      <enemy file = "enemy_attributes.xml"/>
+      <npc file = "npc_attributes.xml"/>
+    </entityAttributes>
+    <hud>
+     <ingame file = "hud_attributes.xml"/>
+     <pause file = "pause_attributes.xml"/>
+    </hud>
+  </game>
+  -<inputManager>
+
+    <!--ATTACK-->
+    <action event="0" button="10"/>
+    
+    <!--DODGE-->
+    <action event="1" button="9"/>
+
+    <!--PAUSE-->
+    <action event="2" button="6"/>
+
+  </inputManager>  
+  <console>
+    <Position x="0" y="0"/>
+    <Size width="700" height="200"/>
+    <Color r="10" g="10" b="10" a="200"/>
+  </console>
+
+</config>
