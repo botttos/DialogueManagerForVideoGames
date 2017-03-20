@@ -65,7 +65,16 @@ bool DialogManager::Dialog(const int id)
 					std::string text = npc.child("text").attribute("value").as_string();
 					if (npc.child("options").first_attribute().as_int() == 1)
 					{
-						//Choose option with UI method. TODO
+						//Choose action with UI method. TODO
+						int action = 1;
+						for(npc = npc.child("options").child("option"); npc != NULL; npc = npc.next_sibling("option"))
+						{
+							int test = npc.attribute("action").as_int();
+							if (npc.attribute("action").as_int() == action)
+							{
+								std::string act = npc.attribute("value").as_string();
+							}
+						}
 						return true;
 					}
 					else
