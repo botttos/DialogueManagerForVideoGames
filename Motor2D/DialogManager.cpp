@@ -44,7 +44,7 @@ bool DialogManager::Update(float dt)
 {
 	//Only for test. Send the npc ID to Dialog method
 	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
-		Dialog(1);
+		Dialog(2);
 
 	return true;
 }
