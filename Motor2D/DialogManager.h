@@ -12,11 +12,13 @@
 #include "j1FileSystem.h"
 #include "j1GameLayer.h"
 #include "j1App.h"
-
+#include "UI_String.h"
 
 class Entity;
 class Player;
 class Enemy;
+class UI_element;
+class UI_String;
 enum ENTITY_TYPE;
 enum ENEMY_TYPE;
 
@@ -53,8 +55,7 @@ public:
 	bool Awake(pugi::xml_node& config);
 	bool Start();
 	bool Update(float dt);
-
-	bool DialogCharge(const int id);
+	bool PostUpdate();
 
 public:
 	std::string folder;
@@ -62,6 +63,9 @@ public:
 	pugi::xml_document dialogDataFile;
 	pugi::xml_node dialogNode;
 
+	int conversation = 0;
+	UI_element* screen = nullptr;
+	UI_String* text_on_screen = nullptr;
 	std::vector<Dialog*> dialog;
 };
 

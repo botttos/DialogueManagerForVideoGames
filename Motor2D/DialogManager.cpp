@@ -1,7 +1,7 @@
 #include "DialogManager.h"
 #include "j1Input.h"
 #include "j1Render.h"
-
+#include "j1Gui.h"
 
 DialogManager::DialogManager() : j1Module()
 {
@@ -66,18 +66,35 @@ bool DialogManager::Start()
 			}
 		}
 	}
+
+	//Prepare UI to print
+	screen = App->gui->CreateScreen(screen);
+	text_on_screen = (UI_String*)App->gui->Add_element(STRING, this);
+	text_on_screen->Set_Active_state(false);
+	text_on_screen->Set_Interactive_Box({0, 0, 0, 0});
+	screen->AddChild(text_on_screen);
 	return ret;
 }
 
 bool DialogManager::Update(float dt)
 {
-
+	
 	return true;
 }
 
-bool DialogManager::DialogCharge(const int id)
-{	
-	return true;
+bool DialogManager::PostUpdate()
+{
+	if(App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
+	{
+		conversation++;
+		//text_on_screen->Set_String((char*)dialog[0]->texts[0]->line->c_str());
+	}
+	text_on_screen->Set_Active_state(true);
+	if (conversation < dialog[0]->texts.size())
+	{
+		text_on_screen->Set_String((char*)dialog[0]->texts[conversation]->line->c_str());
+	}
+	return false;
 }
 
 Dialog::Dialog(int id, int state): id(id), state(state)
