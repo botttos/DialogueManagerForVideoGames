@@ -38,21 +38,24 @@ bool DialogManager::Start()
 {
 	bool ret = true;
 	dialogNode = dialogDataFile.child("npcs");
-	// Reseve memory to dialog
+	// Allocate memory to dialog
 	int i = 0;
 	for (pugi::xml_node npc = dialogNode.child("npc"); npc != NULL; npc = npc.next_sibling(), i++)
 	{
+		//Allocate Dialog ID and his State
 		Dialog* tmp = new Dialog(npc.attribute("id").as_int(), npc.child("dialogue").attribute("state").as_uint());
 		dialog.push_back(tmp);
 
+		//Allocate texts, options and responses
 		for (npc = npc.child("dialogue"); npc != NULL; npc = npc.next_sibling())
 		{
-			int j = 0;
-			pugi::xml_node textx = npc.child("text");
 			for (pugi::xml_node text = npc.child("text"); text != NULL; text = text.next_sibling())
 			{
-				Line* tmp = new Line(false, text.attribute("value").as_string());
-				dialog[i]->texts.push_back(tmp);
+				if (text.name() == "text")
+				{
+					Line* tmp = new Line(false, text.attribute("value").as_string());
+					dialog[i]->texts.push_back(tmp);
+				}
 			}
 			for (pugi::xml_node option = npc.child("options").child("option"); option != NULL; option = option.next_sibling())
 			{
@@ -87,12 +90,28 @@ bool DialogManager::PostUpdate()
 	if(App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
 	{
 		conversation++;
-		//text_on_screen->Set_String((char*)dialog[0]->texts[0]->line->c_str());
 	}
 	text_on_screen->Set_Active_state(true);
 	if (conversation < dialog[0]->texts.size())
 	{
-		text_on_screen->Set_String((char*)dialog[0]->texts[conversation]->line->c_str());
+		/*  This code fragment is just to have feedback on the test :) 
+		    You have to iterate dialog vector and look for your NPC ID.  */
+		if (dialog[0]->id == 1)
+		{
+			if (1 /*NPC->Interaction == false)*/)
+			{
+				text_on_screen->Set_String((char*)dialog[0]->texts[conversation]->line->c_str());
+			}
+			else if(1 /*NPC->Interaction == true)*/) //Player chooses an option
+			{
+				text_on_screen->Set_String((char*)dialog[0]->texts[conversation]->line->c_str());
+			}
+		}
+		
+	}
+	else
+	{
+		conversation = 0;
 	}
 	return false;
 }
