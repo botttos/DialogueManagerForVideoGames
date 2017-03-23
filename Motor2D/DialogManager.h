@@ -25,13 +25,10 @@ class Line
 public:
 
 	Line(bool interaction, std::string text);
-	Line(bool interaction, std::string option1, std::string option2);
 	~Line();
 
 	bool interaction;
-
 	std::string* line = nullptr;
-	std::vector<std::string> options;
 };
 
 class Dialog
@@ -40,6 +37,7 @@ private:
 public:
 
 	Dialog(int id, int state);
+	Dialog();
 	~Dialog();
 
 	int id;
@@ -64,7 +62,7 @@ public:
 	pugi::xml_document dialogDataFile;
 	pugi::xml_node dialogNode;
 
-	std::vector<Dialog*> dialogues;
+	std::vector<Dialog*> dialog;
 };
 
 #endif

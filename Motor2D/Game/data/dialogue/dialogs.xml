@@ -8,6 +8,7 @@
          <option action="1" value="I love doing research!"/>
          <option action="2" value="Research is so hard :("/>
        </options>
+	<response value="Nice choice!"/>
      </dialogue>
      <dialogue state="1">
        <text value="I've already spoken with you"/>
