@@ -31,11 +31,12 @@ public:
 	bool interaction;
 
 	std::string* line = nullptr;
-	std::vector<std::string*> options;
+	std::vector<std::string> options;
 };
 
 class Dialog
 {
+private:
 public:
 
 	Dialog(int id, int state);

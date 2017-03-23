@@ -31,39 +31,29 @@ bool DialogManager::Awake(pugi::xml_node & config)
 	}
 
 	// Reseve dialogues memory
-	/*for (pugi::xml_node npc = dialogNode.child("npc"); npc != NULL; npc = npc.next_sibling())
+	for (pugi::xml_node npc = dialogNode.child("npc"), int i = 0; npc != NULL; npc = npc.next_sibling(), i++)
 	{
-		if (npc.attribute("id").as_int() == id) //If we found our NPC
+		dialogues[i]->id = npc.attribute("id").as_int();
+		dialogues[i]->state = npc.child("dialogue").attribute("state").as_uint();
+		int j = 0;
+		for (npc = npc.child("dialogue"); npc != NULL; npc = npc.next_sibling(), j++)
 		{
-			uint dialogState = npc.attribute("state").as_uint(); //Dialog state of the NPC
-			for (npc = npc.child("dialogue"); npc != NULL; npc = npc.next_sibling()) 
+			int k = 0;
+			for (pugi::xml_node text = npc.child("dialogue").child("text"); text != NULL; text = text.next_sibling(), k++)
 			{
-				if (npc.attribute("state").as_uint() == dialogState)
-				{
-
-					std::string text = npc.child("text").attribute("value").as_string();
-					if (npc.child("options").first_attribute().as_int() == 1)
-					{
-						//Choose action with UI method. TODO
-						int action = 1;
-						for(npc = npc.child("options").child("option"); npc != NULL; npc = npc.next_sibling("option"))
-						{
-							int test = npc.attribute("action").as_int();
-							if (npc.attribute("action").as_int() == action)
-							{
-								std::string act = npc.attribute("value").as_string();
-							}
-						}
-						return true;
-					}
-					else
-					{
-						return false;
-					}
-				}
+				std::string tmp = text.attribute("value").as_string();
+				dialogues[i]->texts[j]->line = &tmp;
 			}
+			for (pugi::xml_node option = npc.child("dialogue").child("options").child, int option_number = 0; option != NULL; option = option.next_sibling(), k++, option_number++)
+			{
+				std::string tmp = option.attribute("value").as_string();
+				dialogues[i]->texts[j]->line[option_number]->push_back(&tmp);
+			}
+			dialogues[i]->texts[j].push_back(text);
+			std::string text = npc.child("text").attribute("value").as_string();
+			dialogues[i]->texts.push_back(&text);
 		}
-	}*/
+	}
 
 	return ret;
 } 
