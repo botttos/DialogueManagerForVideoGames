@@ -49,13 +49,10 @@ bool DialogManager::Start()
 		//Allocate texts, options and responses
 		for (npc = npc.child("dialogue"); npc != NULL; npc = npc.next_sibling())
 		{
-			for (pugi::xml_node text = npc.child("text"); text != NULL; text = text.next_sibling())
+			for (pugi::xml_node text = npc.child("text"); text != NULL; text = text.next_sibling("text"))
 			{
-				if (text.name() == "text")
-				{
-					Line* tmp = new Line(false, text.attribute("value").as_string());
-					dialog[i]->texts.push_back(tmp);
-				}
+				Line* tmp = new Line(false, text.attribute("value").as_string());
+				dialog[i]->texts.push_back(tmp);
 			}
 			for (pugi::xml_node option = npc.child("options").child("option"); option != NULL; option = option.next_sibling())
 			{
