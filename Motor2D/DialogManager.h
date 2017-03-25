@@ -36,11 +36,9 @@ public:
 
 class Dialog
 {
-private:
 public:
 
 	Dialog(int id, int state);
-	Dialog();
 	~Dialog();
 
 	int id;
@@ -53,28 +51,32 @@ class DialogManager : public j1Module
 public:
 
 	DialogManager();
+	~DialogManager();
 	bool Awake(pugi::xml_node& config);
 	bool Start();
 	bool Update(float dt);
 	bool PostUpdate();
 	bool SelectDialogue(int id, int state);
 
-public:
+private:
+
 	std::string folder;
 	std::string path;
 	pugi::xml_document dialogDataFile;
 	pugi::xml_node dialogNode;
-
-	int dialogState = 0;
 
 	UI_element* screen = nullptr;
 	UI_String* text_on_screen = nullptr;
 	UI_String* text_on_screen_Options = nullptr;
 	std::vector<Dialog*> dialog;
 
-/*----------CODE TO TEST RESULTS IN-GAME --------------*/
+	int dialogState = 0;
+
+	/*---CODE TO TEST RESULTS IN-GAME ---*/
 	int id = 1;
 	int state = 0;
+	/*--- END ---*/
+
 };
 
 #endif

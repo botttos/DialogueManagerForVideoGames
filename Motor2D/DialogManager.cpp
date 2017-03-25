@@ -8,6 +8,11 @@ DialogManager::DialogManager() : j1Module()
 	name = ("dialogue");
 }
 
+DialogManager::~DialogManager()
+{
+	dialog.clear();
+}
+
 bool DialogManager::Awake(pugi::xml_node & config)
 {
 	bool ret = true;
@@ -43,7 +48,7 @@ bool DialogManager::Start()
 	for (pugi::xml_node npc = dialogNode.child("npc"); npc != NULL; npc = npc.next_sibling(), i++)
 	{
 		//Allocate Dialog ID and his State
-		Dialog* tmp = new Dialog(npc.attribute("id").as_int(), npc.child("dialogue").attribute("state").as_uint());
+		Dialog* tmp = new Dialog(npc.attribute("id").as_int(), npc.attribute("state").as_uint());
 		dialog.push_back(tmp);
 
 		//Allocate texts, options and responses
@@ -115,6 +120,15 @@ bool DialogManager::PostUpdate()
 			state = 0;
 		}
 	}
+
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)
+	{
+		text_on_screen->Set_Interactive_Box({ 0, 40, 0, 0 });
+	}
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
+	{
+
+	}
 	/*--- END ---*/
 
 	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
@@ -167,9 +181,6 @@ bool DialogManager::SelectDialogue(int id, int state)
 }
 
 Dialog::Dialog(int id, int state): id(id), state(state)
-{}
-
-Dialog::Dialog()
 {}
 
 Dialog::~Dialog()
