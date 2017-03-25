@@ -3,8 +3,6 @@
 
 
 #include "PugiXml\src\pugixml.hpp"
-#include <list>
-#include <map>
 #include <string>
 #include "p2Defs.h"
 #include "p2Log.h"
@@ -26,10 +24,9 @@ class Line
 {
 public:
 
-	Line(bool interaction,int NPCstate, std::string text);
+	Line(int state, std::string text);
 	~Line();
 
-	bool interaction;
 	int state;
 	std::string* line = nullptr;
 };
@@ -55,9 +52,11 @@ public:
 	bool Start();
 	bool Update(float dt);
 	bool PostUpdate();
-	bool SelectDialogue(int id, int state);
+	bool BlitDialog(int id, int state);
 
 private:
+
+	int dialogState = 0;
 
 	std::string folder;
 	std::string path;
@@ -66,16 +65,13 @@ private:
 
 	UI_element* screen = nullptr;
 	UI_String* text_on_screen = nullptr;
-	UI_String* text_on_screen_Options = nullptr;
+
 	std::vector<Dialog*> dialog;
 
-	int dialogState = 0;
-
-	/*---CODE TO TEST RESULTS IN-GAME ---*/
+	/*---CODE TO TEST IN-GAME RESULTS ---*/
 	int id = 1;
 	int stateInput = 0;
 	/*--- END ---*/
-
 };
 
 #endif

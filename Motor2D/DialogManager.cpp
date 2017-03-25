@@ -8,11 +8,6 @@ DialogManager::DialogManager() : j1Module()
 	name = ("dialogue");
 }
 
-DialogManager::~DialogManager()
-{
-	dialog.clear();
-}
-
 bool DialogManager::Awake(pugi::xml_node & config)
 {
 	bool ret = true;
@@ -35,7 +30,6 @@ bool DialogManager::Awake(pugi::xml_node & config)
 		ret = false;
 	}
 	
-
 	return ret;
 } 
 
@@ -43,7 +37,7 @@ bool DialogManager::Start()
 {
 	bool ret = true;
 	dialogNode = dialogDataFile.child("npcs");
-	// Allocate memory to dialog
+	// Allocate memory
 	int i = 0;
 	for (pugi::xml_node npc = dialogNode.child("npc"); npc != NULL; npc = npc.next_sibling(), i++)
 	{
@@ -51,22 +45,12 @@ bool DialogManager::Start()
 		Dialog* tmp = new Dialog(npc.attribute("id").as_int());
 		dialog.push_back(tmp);
 
-		//Allocate texts, options and responses
+		//Allocate text
 		for (pugi::xml_node dialogue = npc.child("dialogue"); dialogue != NULL; dialogue = dialogue.next_sibling())
 		{
 			for (pugi::xml_node text = dialogue.child("text"); text != NULL; text = text.next_sibling("text"))
 			{
-				Line* tmp = new Line(false, dialogue.attribute("state").as_int(), text.attribute("value").as_string());
-				dialog[i]->texts.push_back(tmp);
-			}
-			for (pugi::xml_node option = dialogue.child("options").child("option"); option != NULL; option = option.next_sibling())
-			{
-				Line* tmp = new Line(true, dialogue.attribute("state").as_int(), option.attribute("value").as_string());
-				dialog[i]->texts.push_back(tmp);
-			}
-			for (pugi::xml_node response = dialogue.child("response"); response != NULL; response = response.next_sibling())
-			{
-				Line* tmp = new Line(false, dialogue.attribute("state").as_int(), response.attribute("value").as_string());
+				Line* tmp = new Line(dialogue.attribute("state").as_int(), text.attribute("value").as_string());
 				dialog[i]->texts.push_back(tmp);
 			}
 		}
@@ -75,22 +59,15 @@ bool DialogManager::Start()
 	//Prepare UI to print
 	screen = App->gui->CreateScreen(screen);
 	text_on_screen = (UI_String*)App->gui->Add_element(STRING, this);
-	text_on_screen->Set_Active_state(false);
+	text_on_screen->Set_Active_state(true);
 	text_on_screen->Set_Interactive_Box({0, 0, 0, 0});
 	screen->AddChild(text_on_screen);
 
-	text_on_screen_Options = (UI_String*)App->gui->Add_element(STRING, this);
-	text_on_screen_Options->Set_Active_state(false);
-	text_on_screen_Options->Set_Interactive_Box({ 0, 40, 0, 0 });
-	screen->AddChild(text_on_screen_Options);
-	text_on_screen->Set_Active_state(true);
-	text_on_screen_Options->Set_Active_state(false);
 	return ret;
 }
 
 bool DialogManager::Update(float dt)
 {
-	
 	return true;
 }
 
@@ -120,7 +97,6 @@ bool DialogManager::PostUpdate()
 			stateInput = 0;
 		}
 	}
-
 	/*--- END ---*/
 
 	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
@@ -128,14 +104,13 @@ bool DialogManager::PostUpdate()
 		dialogState++;
 	}
 
-	SelectDialogue(id, stateInput);
+	BlitDialog(id, stateInput);
 	return true;
 }
 
-bool DialogManager::SelectDialogue(int id, int state)
+bool DialogManager::BlitDialog(int id, int state)
 {
-	bool ret = false;
-	//Search the correct ID
+	//Find the correct ID
 	for (int i = 0; i < dialog.size(); i++)
 	{
 		if (dialog[i]->id == id)
@@ -144,32 +119,20 @@ bool DialogManager::SelectDialogue(int id, int state)
 			{
 				dialogState = 0;
 			}
-			for (int j = 0; (j+dialogState) < dialog[i]->texts.size(); j++) //Search correct dialog
+			if (dialog[i]->texts[dialogState]->state == state)
 			{
-				
-				if (dialog[i]->texts[j+dialogState]->state == state)
-				{
-					if (dialog[i]->texts[j+dialogState]->interaction == false)
-					{
-						text_on_screen_Options->Set_Active_state(false); //Unable second option
-						
-						text_on_screen->Set_String((char*)dialog[i]->texts[j+dialogState]->line->c_str());
-						return true;
-					}
-					else if (dialog[i]->texts[j+dialogState]->interaction == true) //Player chooses the option
-					{
-						text_on_screen_Options->Set_Active_state(true); //Enable second option
-						text_on_screen_Options->Set_String((char*)dialog[i]->texts[j + dialogState]->line->c_str());
-
-						text_on_screen->Set_String((char*)dialog[i]->texts[j+dialogState]->line->c_str());
-						return true;
-					}
-				}
+				text_on_screen->Set_String((char*)dialog[i]->texts[dialogState]->line->c_str());
+				return true;
 			}
 		}
 	}
 
-	return ret;
+	return false;
+}
+
+DialogManager::~DialogManager()
+{
+	dialog.clear();
 }
 
 Dialog::Dialog(int id): id(id)
@@ -180,10 +143,12 @@ Dialog::~Dialog()
 	texts.clear();
 }
 
-Line::Line(bool interaction, int NPCstate, std::string text) : interaction(interaction), state(NPCstate)
+Line::Line( int NPCstate, std::string text) : state(NPCstate)
 {
 	line = new std::string(text);
 }
+
+
 
 Line::~Line()
 {}
