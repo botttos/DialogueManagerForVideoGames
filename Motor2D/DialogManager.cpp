@@ -138,6 +138,7 @@ bool DialogManager::SelectDialogue(int id, int state)
 			{
 				dialogState = 0;
 			}
+			for (int j = 0; (j+dialogState) < dialog[i]->texts.size(); j++) //Search correct dialog
 			{
 				
 				if (dialog[i]->texts[j+dialogState]->NPCstate == state)
@@ -154,6 +155,7 @@ bool DialogManager::SelectDialogue(int id, int state)
 						text_on_screen_Options->Set_Active_state(true); //Enable second option
 						text_on_screen_Options->Set_String((char*)dialog[i]->texts[j + dialogState]->line->c_str());
 
+						text_on_screen->Set_String((char*)dialog[i]->texts[j+dialogState]->line->c_str());
 						return true;
 					}
 				}
