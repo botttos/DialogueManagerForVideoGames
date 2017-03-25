@@ -47,21 +47,21 @@ bool DialogManager::Start()
 		dialog.push_back(tmp);
 
 		//Allocate texts, options and responses
-		for (npc = npc.child("dialogue"); npc != NULL; npc = npc.next_sibling())
+		for (pugi::xml_node dialogue = npc.child("dialogue"); dialogue != NULL; dialogue = dialogue.next_sibling())
 		{
-			for (pugi::xml_node text = npc.child("text"); text != NULL; text = text.next_sibling("text"))
+			for (pugi::xml_node text = dialogue.child("text"); text != NULL; text = text.next_sibling("text"))
 			{
-				Line* tmp = new Line(false, text.attribute("value").as_string());
+				Line* tmp = new Line(false, dialogue.attribute("state").as_int(), text.attribute("value").as_string());
 				dialog[i]->texts.push_back(tmp);
 			}
-			for (pugi::xml_node option = npc.child("options").child("option"); option != NULL; option = option.next_sibling())
+			for (pugi::xml_node option = dialogue.child("options").child("option"); option != NULL; option = option.next_sibling())
 			{
-				Line* tmp = new Line(true, option.attribute("value").as_string());
+				Line* tmp = new Line(true, dialogue.attribute("state").as_int(), option.attribute("value").as_string());
 				dialog[i]->texts.push_back(tmp);
 			}
-			for (pugi::xml_node response = npc.child("response"); response != NULL; response = response.next_sibling())
+			for (pugi::xml_node response = dialogue.child("response"); response != NULL; response = response.next_sibling())
 			{
-				Line* tmp = new Line(false, response.attribute("value").as_string());
+				Line* tmp = new Line(false, dialogue.attribute("state").as_int(), response.attribute("value").as_string());
 				dialog[i]->texts.push_back(tmp);
 			}
 		}
@@ -73,6 +73,13 @@ bool DialogManager::Start()
 	text_on_screen->Set_Active_state(false);
 	text_on_screen->Set_Interactive_Box({0, 0, 0, 0});
 	screen->AddChild(text_on_screen);
+
+	text_on_screen_Options = (UI_String*)App->gui->Add_element(STRING, this);
+	text_on_screen_Options->Set_Active_state(false);
+	text_on_screen_Options->Set_Interactive_Box({ 0, 40, 0, 0 });
+	screen->AddChild(text_on_screen_Options);
+	text_on_screen->Set_Active_state(true);
+	text_on_screen_Options->Set_Active_state(false);
 	return ret;
 }
 
@@ -84,33 +91,77 @@ bool DialogManager::Update(float dt)
 
 bool DialogManager::PostUpdate()
 {
-	if(App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
+	/*--- CODE TO TEST RESULTS IN-GAME ---*/
+	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
 	{
-		conversation++;
-	}
-	text_on_screen->Set_Active_state(true);
-	if (conversation < dialog[0]->texts.size())
-	{
-		/*  This code fragment is just to have feedback on the test :) 
-		    You have to iterate dialog vector and look for your NPC ID.  */
-		if (dialog[0]->id == 1)
+		if (id == 1)
 		{
-			if (1 /*NPC->Interaction == false)*/)
+			id = 2;
+		}
+		else
+		{
+			id = 1;
+		}
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
+	{
+		if (state == 0)
+		{
+			state = 1;
+		}
+		else
+		{
+			state = 0;
+		}
+	}
+	/*--- END ---*/
+
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
+	{
+		dialogState++;
+	}
+
+	SelectDialogue(id, state);
+	return true;
+}
+
+bool DialogManager::SelectDialogue(int id, int state)
+{
+	bool ret = false;
+	//Search the correct ID
+	for (int i = 0; i < dialog.size(); i++)
+	{
+		if (dialog[i]->id == id)
+		{
+			if (dialogState >= dialog[i]->texts.size()-1)
 			{
-				text_on_screen->Set_String((char*)dialog[0]->texts[conversation]->line->c_str());
+				dialogState = 0;
 			}
-			else if(1 /*NPC->Interaction == true)*/) //Player chooses an option
 			{
-				text_on_screen->Set_String((char*)dialog[0]->texts[conversation]->line->c_str());
+				
+				if (dialog[i]->texts[j+dialogState]->NPCstate == state)
+				{
+					if (dialog[i]->texts[j+dialogState]->interaction == false)
+					{
+						text_on_screen_Options->Set_Active_state(false); //Unable second option
+						
+						text_on_screen->Set_String((char*)dialog[i]->texts[j+dialogState]->line->c_str());
+						return true;
+					}
+					else if (dialog[i]->texts[j+dialogState]->interaction == true) //Player chooses the option
+					{
+						text_on_screen_Options->Set_Active_state(true); //Enable second option
+						text_on_screen_Options->Set_String((char*)dialog[i]->texts[j + dialogState]->line->c_str());
+
+						return true;
+					}
+				}
 			}
 		}
-		
 	}
-	else
-	{
-		conversation = 0;
-	}
-	return false;
+
+	return ret;
 }
 
 Dialog::Dialog(int id, int state): id(id), state(state)
@@ -124,7 +175,7 @@ Dialog::~Dialog()
 	texts.clear();
 }
 
-Line::Line(bool interaction, std::string text) : interaction(interaction)
+Line::Line(bool interaction, int NPCstate, std::string text) : interaction(interaction), NPCstate(NPCstate)
 {
 	line = new std::string(text);
 }

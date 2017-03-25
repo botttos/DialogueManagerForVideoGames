@@ -26,10 +26,11 @@ class Line
 {
 public:
 
-	Line(bool interaction, std::string text);
+	Line(bool interaction,int NPCstate, std::string text);
 	~Line();
 
 	bool interaction;
+	int NPCstate;
 	std::string* line = nullptr;
 };
 
@@ -56,6 +57,7 @@ public:
 	bool Start();
 	bool Update(float dt);
 	bool PostUpdate();
+	bool SelectDialogue(int id, int state);
 
 public:
 	std::string folder;
@@ -63,10 +65,16 @@ public:
 	pugi::xml_document dialogDataFile;
 	pugi::xml_node dialogNode;
 
-	int conversation = 0;
+	int dialogState = 0;
+
 	UI_element* screen = nullptr;
 	UI_String* text_on_screen = nullptr;
+	UI_String* text_on_screen_Options = nullptr;
 	std::vector<Dialog*> dialog;
+
+/*----------CODE TO TEST RESULTS IN-GAME --------------*/
+	int id = 1;
+	int state = 0;
 };
 
 #endif
