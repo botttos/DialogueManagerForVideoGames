@@ -66,11 +66,6 @@ bool DialogManager::Start()
 	return ret;
 }
 
-bool DialogManager::Update(float dt)
-{
-	return true;
-}
-
 bool DialogManager::PostUpdate()
 {
 	/*--- CODE TO TEST RESULTS IN-GAME ---*/
@@ -148,8 +143,8 @@ Line::Line( int NPCstate, std::string text) : state(NPCstate)
 	line = new std::string(text);
 }
 
-
-
 Line::~Line()
-{}
+{
+	
+}
 

@@ -50,7 +50,6 @@ public:
 	~DialogManager();
 	bool Awake(pugi::xml_node& config);
 	bool Start();
-	bool Update(float dt);
 	bool PostUpdate();
 	bool BlitDialog(int id, int state);
 
