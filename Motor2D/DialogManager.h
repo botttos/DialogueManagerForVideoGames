@@ -30,7 +30,7 @@ public:
 	~Line();
 
 	bool interaction;
-	int NPCstate;
+	int state;
 	std::string* line = nullptr;
 };
 
@@ -38,11 +38,10 @@ class Dialog
 {
 public:
 
-	Dialog(int id, int state);
+	Dialog(int id);
 	~Dialog();
 
 	int id;
-	int state;
 	std::vector<Line*> texts;
 };
 
@@ -74,7 +73,7 @@ private:
 
 	/*---CODE TO TEST RESULTS IN-GAME ---*/
 	int id = 1;
-	int state = 0;
+	int stateInput = 0;
 	/*--- END ---*/
 
 };

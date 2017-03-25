@@ -47,8 +47,8 @@ bool DialogManager::Start()
 	int i = 0;
 	for (pugi::xml_node npc = dialogNode.child("npc"); npc != NULL; npc = npc.next_sibling(), i++)
 	{
-		//Allocate Dialog ID and his State
-		Dialog* tmp = new Dialog(npc.attribute("id").as_int(), npc.attribute("state").as_uint());
+		//Allocate Dialog with his ID and State
+		Dialog* tmp = new Dialog(npc.attribute("id").as_int());
 		dialog.push_back(tmp);
 
 		//Allocate texts, options and responses
@@ -111,24 +111,16 @@ bool DialogManager::PostUpdate()
 
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
 	{
-		if (state == 0)
+		if (stateInput == 0)
 		{
-			state = 1;
+			stateInput = 1;
 		}
 		else
 		{
-			state = 0;
+			stateInput = 0;
 		}
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)
-	{
-		text_on_screen->Set_Interactive_Box({ 0, 40, 0, 0 });
-	}
-	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
-	{
-
-	}
 	/*--- END ---*/
 
 	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
@@ -136,7 +128,7 @@ bool DialogManager::PostUpdate()
 		dialogState++;
 	}
 
-	SelectDialogue(id, state);
+	SelectDialogue(id, stateInput);
 	return true;
 }
 
@@ -155,7 +147,7 @@ bool DialogManager::SelectDialogue(int id, int state)
 			for (int j = 0; (j+dialogState) < dialog[i]->texts.size(); j++) //Search correct dialog
 			{
 				
-				if (dialog[i]->texts[j+dialogState]->NPCstate == state)
+				if (dialog[i]->texts[j+dialogState]->state == state)
 				{
 					if (dialog[i]->texts[j+dialogState]->interaction == false)
 					{
@@ -180,7 +172,7 @@ bool DialogManager::SelectDialogue(int id, int state)
 	return ret;
 }
 
-Dialog::Dialog(int id, int state): id(id), state(state)
+Dialog::Dialog(int id): id(id)
 {}
 
 Dialog::~Dialog()
@@ -188,7 +180,7 @@ Dialog::~Dialog()
 	texts.clear();
 }
 
-Line::Line(bool interaction, int NPCstate, std::string text) : interaction(interaction), NPCstate(NPCstate)
+Line::Line(bool interaction, int NPCstate, std::string text) : interaction(interaction), state(NPCstate)
 {
 	line = new std::string(text);
 }
