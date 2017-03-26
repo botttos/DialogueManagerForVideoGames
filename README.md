@@ -45,7 +45,7 @@ In a parser-driven dialogue, players must type their exact response on a text an
 
 A video game that uses this system is _Façade_
 
-![](https://screenshots.en.sftcdn.net/en/scrn/3342000/3342153/facade-06-700x492.jpg)  
+
 
 
 ## Systemic Interactions
@@ -56,7 +56,7 @@ Often, It is a part of the gameplay or exploration. Rarery player can interact w
 We can find exemples of this system in games like _GTA V_ or _Bully_.
 
 
-![](https://cdn0.vox-cdn.com/uploads/chorus_asset/file/2938934/Bully-Scholarship-Edition-PC-Game-Screenshot-Review-1.0.jpg)
+
 
 ## Other Systems
 
