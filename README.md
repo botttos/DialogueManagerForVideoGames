@@ -39,10 +39,40 @@ Other example is _Life is Strange_.
 
 ![](http://womenwriteaboutcomics.com/wp-content/uploads/2015/06/h2QVDfQ.jpg)  
 
-## Parser-Driven Dialogues
+## Systemic Interactions
 
-In a parser-driven dialogue, players must type their exact response on a text and the system attempts to parse the input in a way it can understand. The NPC then replies with one of a number of pre-set responses, or builds a response based around the words used by the player in combination with pre-set phrases. In many cases, the player directly controls the flow of conversation, veering wildly off-topic whenever they wish without eliciting much surprise from the NPC.  
+Some games do not feature full conversation systems, but merely simple means for interacting with characters that pass by. 
+Often, It is a part of the gameplay or exploration. Rarery player can interact with the NPC. 
 
-A video game that uses this system is _Façade_
+We can find exemples of this system in games like _GTA V_ or _Bully_.
 
 
+![](https://cdn0.vox-cdn.com/uploads/chorus_asset/file/2938934/Bully-Scholarship-Edition-PC-Game-Screenshot-Review-1.0.jpg)
+
+## Other Systems
+
+There are other games wich interaction with the NPC is difficult to categorize. 
+One of this kind of games is _The Sims_. Basic interactions are very similar to Systemic Interactions, the context is significantly different due to the way the player has control over multiple characters and can control both sides of a relationship.
+Characters in the game speak nonsensical gibberish, however, so their dialogue reflects only their mood or their emotional response to the topic and the character they converse with; it conveys no other information to the player.        
+In other games like _The Elder Scrolls IV_, the player plays a minigame to improve the NPC's disposition.
+
+![](http://lh3.ggpht.com/-iBkGkVx-ynY/U8r3jygF5sI/AAAAAAAAW9Q/zJ4tYe32HCI/w600-o/Captura-2014-07-19-21h40m11s170.png)
+
+# Dialog Tree
+
+Before begin to program a Dialog Manager, We have to make a **dialog tree**. 
+
+A dialog tree is a kind of [Directed Graph](https://en.wikipedia.org/wiki/Directed_graph) with the nodes representing dialog content and the edges representing player choices. Once we have the structure of our graph, must highlight the important points and finally fill them with the NPC dialogues.
+
+There implementation is simple enough that anyone with basic knowledge of data structures class should be able to build one, as you can see bottom, I will show you how to build a Non-Branching Dialogue Manager.  
+
+A smart implementation on **big projects** is one that doesn't encode the the structure or content of the graph directly, merely references that can be dynamically loaded as data files encoded as [XML](https://en.wikipedia.org/wiki/XML) by an external tool and then imported at run time.
+This makes managing and authoring the content easier and eases localization.
+
+Exemple of dialog tree:
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Dialog_tree_example.svg/800px-Dialog_tree_example.svg.png)
+
+# Code 
+
+## XML Structure
