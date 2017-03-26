@@ -71,6 +71,7 @@ bool DialogueManager::PostUpdate()
 	/*--- CODE TO TEST RESULTS IN-GAME ---*/
 	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
 	{
+		dialogueStep = 0;
 		if (id == 1)
 		{
 			id = 2;
@@ -83,15 +84,22 @@ bool DialogueManager::PostUpdate()
 
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
 	{
-		if (stateInput == 0)
+		dialogueStep = 0;
+		if (NPCstate == 0)
 		{
-			stateInput = 1;
+			NPCstate = 1;
 		}
 		else
 		{
-			stateInput = 0;
+			NPCstate = 0;
 		}
 	}
+
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	{
+		dialogueStep = 0;
+	}
+
 	/*--- END ---*/
 
 	text_on_screen->Set_Active_state(true); //Active screen
@@ -101,7 +109,7 @@ bool DialogueManager::PostUpdate()
 		dialogueStep++;
 	}
 
-	BlitDialog(id, stateInput); //Calls Blit function
+	BlitDialog(id, NPCstate); //Calls Blit function
 	return true;
 }
 
@@ -112,12 +120,8 @@ bool DialogueManager::BlitDialog(uint id, uint state)
 	{
 		if (dialog[i]->id == id)
 		{
-			for (int j = 0; (j + dialogueStep) < dialog[i]->texts.size(); j++) //Search correct dialog
+			for (int j = 0; (j + dialogueStep) < dialog[i]->texts.size(); j++) //Search correct text inside Dialogue 
 			{
-				if (dialogueStep >= dialog[i]->texts.size() - 1)
-				{
-					dialogueStep = 0;
-				}
 				if (dialog[i]->texts[dialogueStep+j]->state == state)
 				{
 					text_on_screen->Set_String((char*)dialog[i]->texts[dialogueStep+j]->line->c_str());

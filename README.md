@@ -48,7 +48,7 @@ In a parser-driven dialogue, players must type their exact response on a text an
 The NPC then replies with one of a number of pre-set responses, or builds a response based arround the words by the player in combination with pre-set phrases. 
 In many cases, the player directly controls the flow of conversation, verring wildly off-topic whenever they wish without eliciting much surprise from the NPC.
 
-A video game that uses this system is _Facade_ (It is not correctly written because web format reports an errorin one caracter, you can see the original game [here](https://en.wikipedia.org/wiki/Fa%C3%A7ade_(video_game))).
+A video game that uses this system is _Facade_ (It is not correctly written because web format reports an error in one caracter, you can see the original game [here](https://en.wikipedia.org/wiki/Fa%C3%A7ade_(video_game))).
 
 ![](https://screenshots.en.sftcdn.net/en/scrn/3342000/3342153/facade-06-700x492.jpg)  
 
@@ -79,9 +79,6 @@ A dialog tree is a kind of [Directed Graph](https://en.wikipedia.org/wiki/Direct
 
 There implementation is simple enough that anyone with basic knowledge of data structures class should be able to build one, as you can see bottom, I will show you how to build a Non-Branching Dialogue Manager.  
 
-A smart implementation on **big projects** is one that doesn't encode the the structure or content of the graph directly, merely references that can be dynamically loaded as data files encoded as [XML](https://en.wikipedia.org/wiki/XML) by an external tool and then imported at run time.
-This makes managing and authoring the content easier and eases localization.
-
 Exemple of dialog tree:
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Dialog_tree_example.svg/800px-Dialog_tree_example.svg.png)
@@ -94,6 +91,9 @@ If you need to access each module you must use an external pointer called App.
 ## XML Structure
 
 We are going to learn how to build a simple Non-Branching Dialogue Manager, where the dialogue changes if we speak twice with an NPC, like some _The Legend of Zelda: A Link to the Past_ NPCs do.
+
+A smart implementation on **big projects** is one that doesn't encode the the structure or content of the graph directly, merely references that can be dynamically loaded as data files encoded as [XML](https://en.wikipedia.org/wiki/XML) by an external tool and then imported at run time.
+This makes managing and authoring the content easier and eases localization.
 
 First of all, we must structure our dialogues on a XML file thinking about how will store the data. We need an attribute "id" to associate the text with the NPC. And some dialogues, with attribute "state" that shows the correct text depending of NPC state.
 

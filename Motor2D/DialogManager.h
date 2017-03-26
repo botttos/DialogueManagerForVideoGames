@@ -73,7 +73,7 @@ private:
 
 	/*---CODE TO TEST IN-GAME RESULTS ---*/
 	uint id = 1;
-	uint stateInput = 0;
+	uint NPCstate = 0;
 	/*--- END ---*/
 };
 
