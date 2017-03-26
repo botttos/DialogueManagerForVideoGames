@@ -5,8 +5,6 @@
 #include "j1CollisionManager.h"
 #include "p2Point.h"
 #include "j1Render.h"
-#include "Enemy.h"
-#include "Player.h"
 #include "j1PerfTimer.h"
 #include "p2Log.h"
 //#include "Hud.h"
@@ -38,16 +36,7 @@ bool j1GameLayer::Awake(pugi::xml_node& conf)
 }
 
 // Called before the first frame
-bool j1GameLayer::Start()
-{
-	active = true;
 
-
-	em->CreatePlayer(50, 50);
-
-
-	return true;
-}
 
 //preUpdate
 bool j1GameLayer::PreUpdate()
@@ -64,10 +53,7 @@ bool j1GameLayer::Update(float dt)
 	bool ret = true;
 
 	em->Update(dt);
-	//ret = hud->Update(dt);
 
-	App->render->CameraFollow((*playerId)->currentPos);
-	
 	return ret;
 }
 
@@ -100,37 +86,6 @@ bool j1GameLayer::On_Collision_Callback(Collider * c1, Collider * c2 , float dt)
 		return true;
 	}
 
-	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY)
-	{
-		if (((Player*)(*playerId))->invulnerable == false)
-		{
-
-			if ((*playerId) != nullptr)
-			{
-				(*playerId)->damaged = ((Player*)(*playerId))->invulnerable = true;
-				(*playerId)->damagedTimer.Start();
-				LOG("DAMAGED TIMER STARTED");
-				(*playerId)->life--;
-				(*playerId)->sprite->tint = { 100, 0, 0, 255 };
-
-				if (c1->rect.x < c2->rect.x)
-					(*playerId)->appliedForce.x = -1;
-				else (*playerId)->appliedForce.x = 1;
-
-				if (c1->rect.y < c2->rect.y)
-					(*playerId)->appliedForce.y = -1;
-				else (*playerId)->appliedForce.y = 1;			
-			}
-		}
-
 		return true;
 	}
 
-	if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_LINK_SWORD)
-	{
-		c1->parent->life--;
-	}
-	
-		
-		return true;
-}

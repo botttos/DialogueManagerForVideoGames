@@ -64,9 +64,6 @@
     <ClCompile Include="j1Window.cpp">
       <Filter>Desenvolupament  ========\Modules\CPP</Filter>
     </ClCompile>
-    <ClCompile Include="j1ParticleManager.cpp">
-      <Filter>Desenvolupament  ========\Modules\CPP</Filter>
-    </ClCompile>
     <ClCompile Include="j1SceneManager.cpp">
       <Filter>Desenvolupament  ========\Modules\CPP</Filter>
     </ClCompile>
@@ -91,17 +88,8 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Desenvolupament  ========\Game Layer</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Desenvolupament  ========\Game Layer\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="GreenSoldier.cpp">
-      <Filter>Desenvolupament  ========\Game Layer\Entities\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Desenvolupament  ========\Game Layer\Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
       <Filter>Desenvolupament  ========\Game Layer</Filter>
@@ -201,9 +189,6 @@
     <ClInclude Include="j1SceneManager.h">
       <Filter>Desenvolupament  ========\Modules\H</Filter>
     </ClInclude>
-    <ClInclude Include="j1ParticleManager.h">
-      <Filter>Desenvolupament  ========\Modules\H</Filter>
-    </ClInclude>
     <ClInclude Include="j1GameLayer.h">
       <Filter>Desenvolupament  ========\Game Layer</Filter>
     </ClInclude>
@@ -227,15 +212,6 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Desenvolupament  ========\Game Layer</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Desenvolupament  ========\Game Layer\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Desenvolupament  ========\Game Layer\Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="GreenSoldier.h">
-      <Filter>Desenvolupament  ========\Game Layer\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
       <Filter>Desenvolupament  ========\Game Layer</Filter>
@@ -275,14 +251,8 @@
     <Filter Include="Desenvolupament  ========\Game Layer">
       <UniqueIdentifier>{4cfcb117-ff6b-49b1-a669-c8b27d81cf35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Game Layer\Entities">
-      <UniqueIdentifier>{c7cde884-cbfc-45ea-b310-1703a2d3f239}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Desenvolupament  ========\Scenes\Test Scene">
       <UniqueIdentifier>{3c43655f-968c-42cf-ad0f-263ec91b3201}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Desenvolupament  ========\Game Layer\Entities\Enemies">
-      <UniqueIdentifier>{71db718c-24e0-4519-a5cf-5a4ef27745e2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Desenvolupament  ========\Game Layer\Dialogs">
       <UniqueIdentifier>{c525055e-8e4b-410b-ae98-b0a6c51d84b9}</UniqueIdentifier>

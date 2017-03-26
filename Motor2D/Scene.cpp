@@ -1,12 +1,8 @@
 #include "Scene.h"
 #include "j1App.h"
 #include "j1Pathfinding.h"
-
-
 #include "j1GameLayer.h"
 #include <list>
-#include "Player.h"
-
 
 bool Scene::Load(std::string data)
 {

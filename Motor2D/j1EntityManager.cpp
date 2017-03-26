@@ -5,12 +5,7 @@
 #include "j1GameLayer.h"
 #include "p2Point.h"
 #include "Entity.h"
-#include "Player.h"
-#include "Enemy.h"
 #include "j1CollisionManager.h"
-
-//=====Enemy Includes
-#include "GreenSoldier.h"
 
 
 j1EntityManager::j1EntityManager()
@@ -104,34 +99,3 @@ bool j1EntityManager::CleanUp()
 	return ret;
 }
 
-Player* j1EntityManager::CreatePlayer(int x, int y)
-{
-	Player* ret = new Player();
-
-	ret->Spawn(dir[LINK], iPoint(x,y));
-	ret->type = LINK;
-	entities.push_front(ret);
-	App->game->playerId = ret->id = entities.begin();
-	
-	return ret;
-}
-
-//Enemy factory
-Enemy * j1EntityManager::CreateEnemy(ENEMY_TYPE type, int x, int y)
-{
-	Enemy* ret = nullptr;
-
-	switch (type)
-	{
-	case GREEN_SOLDIER:
-		ret = new GreenSoldier();
-		break;
-	}
-
-	ret->Spawn(dir[ENEMY], iPoint(x, y));
-	ret->type = ENEMY;
-	entities.push_back(ret);
-	ret->id = entities.end();
-
-	return nullptr;
-}

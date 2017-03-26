@@ -8,8 +8,6 @@
 #include <string>
 
 class Entity;
-class Player;
-class Enemy;
 enum ENTITY_TYPE;
 enum ENEMY_TYPE;
 
@@ -25,9 +23,6 @@ public:
 	bool CleanUp();
 
 public:
-
-	Player* CreatePlayer(int x, int y);
-	Enemy* CreateEnemy(ENEMY_TYPE, int x, int y);
 
 	std::list<Entity*> entities;
 

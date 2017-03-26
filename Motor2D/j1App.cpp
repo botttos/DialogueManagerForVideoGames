@@ -17,7 +17,6 @@
 #include "j1Gui.h"
 #include "j1Console.h"
 #include "InputManager.h"
-#include "j1ParticleManager.h"
 #include "j1SceneManager.h"
 #include "j1CollisionManager.h"
 #include "j1GameLayer.h"
@@ -39,7 +38,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new j1Textures();
 	audio = new j1Audio();
 	pathfinding = new j1PathFinding();
-	particles = new j1ParticleManager();
 	gui = new j1Gui();
 	sceneM = new j1SceneManager();
 	game = new j1GameLayer();
@@ -62,7 +60,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(pathfinding);
 	AddModule(sceneM);
 	AddModule(game);
-	AddModule(particles);
 	AddModule(gui);
 	AddModule(collisions);
 	AddModule(console);

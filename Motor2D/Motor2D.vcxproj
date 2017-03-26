@@ -76,9 +76,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DialogManager.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="GreenSoldier.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="j1CollisionManager.cpp" />
@@ -91,7 +89,6 @@
     <ClCompile Include="j1App.cpp" />
     <ClCompile Include="j1Audio.cpp" />
     <ClCompile Include="j1Input.cpp" />
-    <ClCompile Include="j1ParticleManager.cpp" />
     <ClCompile Include="j1Pathfinding.cpp" />
     <ClCompile Include="j1PerfTimer.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -103,7 +100,6 @@
     <ClCompile Include="j1Render.cpp" />
     <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="UI_element.cpp" />
@@ -116,9 +112,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="CVar_Com.h" />
     <ClInclude Include="DialogManager.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="GreenSoldier.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="j1CollisionManager.h" />
@@ -127,7 +121,6 @@
     <ClInclude Include="j1Fonts.h" />
     <ClInclude Include="j1GameLayer.h" />
     <ClInclude Include="j1Gui.h" />
-    <ClInclude Include="j1ParticleManager.h" />
     <ClInclude Include="j1Pathfinding.h" />
     <ClInclude Include="j1PerfTimer.h" />
     <ClInclude Include="TestScene.h" />
@@ -147,7 +140,6 @@
     <ClInclude Include="j1Textures.h" />
     <ClInclude Include="j1Window.h" />
     <ClInclude Include="p2SString.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Scene.h" />

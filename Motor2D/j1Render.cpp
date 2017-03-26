@@ -4,7 +4,6 @@
 #include "j1Window.h"
 #include "j1Render.h"
 #include "j1GameLayer.h"
-#include "Player.h"
 #include "j1Input.h"
 #include "j1CollisionManager.h"
 
