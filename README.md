@@ -182,3 +182,104 @@ private:
 	std::vector<Dialogue*> dialogue; //Vector of Dialogues.
 }
   ```
+
+# TODO's
+
+To write the code properly, there are comments on the code with the name "TODO" wich give instructions to make the code work. The goal of this is make sure you understand every step on the management of the dialogues. 
+
+You can search all the TODO's in the code pressing ctrl+SHIFT+F (on Visual Studio), let's start:
+
+## TODO 1. XML Structure
+
+Create your own XML with his dialogues.
+
+You must go to DialogueManagerForVideoGames\Motor2D\Game\data.zip\dialogue\dialogs.xml and open the file directly from the .zip. If the file does not open, you can decompress It, make modifications, and compress It again. **Always as .zip**.      It is very important, if you do not do this correctly, the data will not load.
+
+Your XML must have a structure like we saw above. You can add as many NPCs as you want.
+
+
+## TODO 2.
+
+Make a vector of pointers to Dialogue. Here will fill all our dialogues from XML.
+
+
+## TODO 3.
+
+Allocate memory to Dialogue from your XML.
+
+Make Pushback of this data into your vector made previously.
+
+
+## TODO 4
+
+Allocate memory to all the text inside dialogues from XML.
+
+You will need two iterators, one for every dialogue and another one for all their texts.
+
+Make Pushback of this data into Dialogue's textLine vector. **We want all the texts** :)
+
+
+## TODO 5
+
+We are going to prepare the Blit funciton.
+
+This function recives the NPC id and state, setting the correct text on the screen. 
+                                    
+Iterate your Dialogue vector and search for the correct dialogue ID.
+
+
+## TODO 6
+
+Iterate every text inside previous Dialogue you found previously and set the string on the _tex_on_screen_, using **text_on_screen->Set_String(string);**
+
+**Remember dialogueStep value**. We want to follow the right impression flow.
+
+
+## TODO 7
+
+Call BlitDialog sending the id and NPC state. There are code to test in-game results. Send id and NPCstate values (there are already defined).
+
+### Controls:
+
+Q: Advance the dialogue.
+
+Z: Change NPC (in case you have more than 1).
+
+X: Change NPC state.
+
+R: Restart conversation.
+
+# MORE CHALLENGES
+
+Now we are going to create a simple Branching Dialogue, where you will give two or more options to the player, ending in the same response. This tecnique is intended to create a sense of freedom.
+
+XML must look like this:
+```
+<npc id="1">
+     <dialogue state="0">
+       <text value="Hi! #{PlayerName}, do you prefer Cola Cao or Nesquik?"/>
+       <options>
+         <option value="Cola Cao is the best"/>
+         <option value="Nesquik is the best"/>
+       </options>
+       <response value="You must be a horrible person"/>
+     </dialogue>
+     <dialogue state="1">
+       <text value="You aren't interesting anymore."/>
+     </dialogue>
+   </npc>
+  ```
+You must adapt what we did on last TODO's to this new structure.
+
+Add a new vector (default empty) in textLine, wich must allocate all the options inside.
+
+You must create another _screen _ from UI and _text_on_screen _(you can find the code in Start() function) and adapt the BlitDialog function, conditioner should look like: _if your new options vector != nullptr_. You will need UI code to implement new functions.
+
+
+# THE END
+
+As you can see, the only limit on Dialogues in video games is yourself, so let's work hard!                              If you have any questions, suggestions or feedback, you can contact me on my mail: fran152job@gmail.com
+
+I hope It've been useful. 
+
+Greetings, Fran :)
