@@ -4,7 +4,6 @@
 #include "j1FileSystem.h"
 #include "j1Textures.h"
 #include "j1Render.h"
-#include "j1Map.h"
 #include "j1Pathfinding.h"
 #include "j1CollisionManager.h"
 #include "p2Log.h"

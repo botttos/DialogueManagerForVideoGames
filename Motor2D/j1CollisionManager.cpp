@@ -4,7 +4,6 @@
 #include "j1Render.h"
 #include "j1Input.h"
 #include "j1CollisionManager.h"
-#include "j1Map.h"
 #include "j1Pathfinding.h"
 
 
@@ -133,26 +132,3 @@ bool Collider::CheckCollision(const SDL_Rect& r) const
 		rect.h + rect.y > r.y);
 }
 
-bool Collider::CheckMapCollision()
-{
-	bool ret = false;
-
-	iPoint up_left = App->map->WorldToMap(rect.x, rect.y);
-	iPoint up_right = App->map->WorldToMap(rect.x + rect.w, rect.y); 
-	iPoint down_left = App->map->WorldToMap(rect.x, rect.y + rect.h);
-	iPoint down_right = App->map->WorldToMap(rect.x + rect.w, rect.y + rect.h); 
-
-	if (App->pathfinding->IsWalkable(up_left) == false)
-		ret = true; 
-
-	if (App->pathfinding->IsWalkable(up_right) == false)
-		ret = true;
-
-	if (App->pathfinding->IsWalkable(down_left) == false)
-		ret = true;
-
-	if (App->pathfinding->IsWalkable(down_right) == false)
-		ret = true;
-
-	return ret;
-}

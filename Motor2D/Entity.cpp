@@ -7,7 +7,6 @@
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Textures.h"
-#include "j1Map.h"
 
 Entity::Entity() :
 	sprite(nullptr),
@@ -59,7 +58,6 @@ bool Entity::Draw()
 	currentAnim = &anim.find({ actionState, currentDir })->second;
 	sprite->updateSprite(currentPos, currentAnim->pivot, currentAnim->getCurrentFrame(), currentAnim->flip);
 	App->render->Draw(sprite);
-	App->map->DebugPath(path);
 
 	return ret;
 }
@@ -154,13 +152,6 @@ void Entity::Move(int x, int y)
 {
 	currentPos.x += x;
 	UpdateCollider();
-	if (col->CheckMapCollision())
-		currentPos.x -= x;
-
-	currentPos.y += y;
-	UpdateCollider();
-	if (col->CheckMapCollision())
-		currentPos.y -= y;
 }
 
 void Entity::UpdateCollider()

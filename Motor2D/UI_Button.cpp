@@ -24,12 +24,12 @@ void UI_Button::Set_Button_Image(const UI_Image* new_image)
 bool UI_Button::Update_Draw()
 {
 
-	if (active)
+	/*if (active)
 	{
 		App->render->Blit((SDL_Texture*)App->gui->GetAtlas(), (Interactive_box.x - App->render->camera.x) * App->gui->scale_factor, (Interactive_box.y - App->render->camera.y)* App->gui->scale_factor, &Button_image->Image);
 
-		Child_Update_Draw();
-	}
+		//Child_Update_Draw();
+	}*/
 	return true;
 }
 

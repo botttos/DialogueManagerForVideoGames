@@ -33,7 +33,6 @@ public:
 	Collider(COLLIDER_TYPE type, SDL_Rect rect, j1Module* callback = nullptr) :type(type), callback(callback), rect(rect) {};
 	
 	bool CheckCollision(const SDL_Rect& r) const;
-	bool CheckMapCollision();
 
 };
 

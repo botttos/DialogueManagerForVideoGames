@@ -12,7 +12,6 @@
 #include "j1Textures.h"
 #include "j1Audio.h"
 #include "j1FileSystem.h"
-#include "j1Map.h"
 #include "j1Pathfinding.h"
 #include "j1Fonts.h"
 #include "j1Gui.h"
@@ -39,7 +38,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	win = new j1Window();
 	tex = new j1Textures();
 	audio = new j1Audio();
-	map = new j1Map();
 	pathfinding = new j1PathFinding();
 	particles = new j1ParticleManager();
 	gui = new j1Gui();
@@ -60,7 +58,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(map);
+
 	AddModule(pathfinding);
 	AddModule(sceneM);
 	AddModule(game);
@@ -282,7 +280,7 @@ void j1App::FinishUpdate()
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 
 	static char title[256];
-	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
+	sprintf_s(title, 256, "Dialogue Manager tutorial",
 			  avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
 	App->win->SetTitle(title);
 

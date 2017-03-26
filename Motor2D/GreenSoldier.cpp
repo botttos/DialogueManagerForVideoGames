@@ -4,7 +4,6 @@
 #include "j1GameLayer.h"
 #include "GreenSoldier.h"
 #include "j1Input.h"
-#include "j1Map.h"
 #include "j1Render.h"
 
 

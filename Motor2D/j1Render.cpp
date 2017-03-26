@@ -94,11 +94,11 @@ bool j1Render::PostUpdate()
 	{
 		// blit sprites
 		std::multimap<int, Sprite* > ::iterator it;
-		for (it = layer->second.begin(); it != layer->second.end(); it++)
+		/*for (it = layer->second.begin(); it != layer->second.end(); it++)
 		{
 			Sprite* sprite = it->second;
 			CompleteBlit(sprite->texture, sprite->position_map.x - sprite->pivot.x, sprite->position_map.y - sprite->pivot.y, sprite->section_texture, sprite->tint, sprite->angle, sprite->pivot.x, sprite->pivot.y, sprite->flip);
-		}
+		}*/
 
 		layer->second.clear();
 	}
