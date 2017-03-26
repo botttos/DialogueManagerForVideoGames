@@ -31,7 +31,6 @@ j1GameLayer::~j1GameLayer()
 bool j1GameLayer::Awake(pugi::xml_node& conf)
 {
 	em->Awake(conf);
-	//hud->Awake(conf);
 	return true;
 }
 
@@ -61,7 +60,6 @@ bool j1GameLayer::Update(float dt)
 bool j1GameLayer::PostUpdate()
 {
 	em->PostUpdate();
-	//hud->PostUpdate();
 
 	return true;
 }
@@ -71,7 +69,6 @@ bool j1GameLayer::CleanUp()
 {
 	active = false;
 
-	//hud->CleanUp();
 	em->CleanUp();
 
 	return true;
