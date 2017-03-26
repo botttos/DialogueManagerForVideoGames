@@ -46,5 +46,3 @@ In a parser-driven dialogue, players must type their exact response on a text an
 A video game that uses this system is _Façade_
 
 
-
-![](https://screenshots.en.sftcdn.net/en/scrn/3342000/3342153/facade-06-700x492.jpg)
