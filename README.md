@@ -209,6 +209,8 @@ Allocate memory to Dialogue from your XML.
 
 Make Pushback of this data into your vector made previously.
 
+Remember delete memory too!
+
 
 ## TODO 4
 
@@ -217,6 +219,8 @@ Allocate memory to all the text inside dialogues from XML.
 You will need two iterators, one for every dialogue and another one for all their texts.
 
 Make Pushback of this data into Dialogue's textLine vector. **We want all the texts** :)
+
+Remember delete memory too!
 
 
 ## TODO 5
@@ -273,7 +277,7 @@ You must adapt what we did on last TODO's to this new structure.
 
 Add a new vector (default empty) in textLine, wich must allocate all the options inside.
 
-You must create another _screen _ from UI and _text_on_screen _(you can find the code in Start() function) and adapt the BlitDialog function, conditioner should look like: _if your new options vector != nullptr_. You will need UI code to implement new functions.
+You must create another _screen_ from UI and _text_on_screen_ (you can find the code in Start() function) and adapt the BlitDialog function, conditioner should look like: _if new_options_vector != nullptr_. You will need UI code to implement new functions.
 
 
 # THE END
