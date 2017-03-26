@@ -20,56 +20,60 @@ class UI_String;
 enum ENTITY_TYPE;
 enum ENEMY_TYPE;
 
-class Line
+class TextLine
 {
 public:
 
-	Line(int state, std::string text);
-	~Line();
+	TextLine(int state, std::string text);
+	~TextLine();
 
 	int state;
 	std::string* line = nullptr;
 };
 
-class Dialog
+class Dialogue
 {
 public:
 
-	Dialog(int id);
-	~Dialog();
+	Dialogue(int id);
+	~Dialogue();
 
-	int id;
-	std::vector<Line*> texts;
+	uint id;
+	std::vector<TextLine*> texts;
 };
 
-class DialogManager : public j1Module
+class DialogueManager : public j1Module
 {
 public:
 
-	DialogManager();
-	~DialogManager();
+	DialogueManager();
+	~DialogueManager();
 	bool Awake(pugi::xml_node& config);
 	bool Start();
 	bool PostUpdate();
-	bool BlitDialog(int id, int state);
+	bool BlitDialog(uint id, uint state);
 
 private:
 
-	int dialogState = 0;
+	int dialogueStep = 0; //Allows to order the conversarion correctly
 
+	std::vector<Dialogue*> dialog;
+
+	/*-- Data to load XML --*/
 	std::string folder;
 	std::string path;
-	pugi::xml_document dialogDataFile;
-	pugi::xml_node dialogNode;
+	pugi::xml_document dialogueDataFile;
+	pugi::xml_node dialogueNode;
+	/*-- END --*/
 
+	/*--- UI elements to print dialogues on screen ---*/
 	UI_element* screen = nullptr;
 	UI_String* text_on_screen = nullptr;
-
-	std::vector<Dialog*> dialog;
+	/*-- END --*/
 
 	/*---CODE TO TEST IN-GAME RESULTS ---*/
-	int id = 1;
-	int stateInput = 0;
+	uint id = 1;
+	uint stateInput = 0;
 	/*--- END ---*/
 };
 

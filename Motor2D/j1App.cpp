@@ -41,7 +41,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	game = new j1GameLayer();
 	collisions = new j1CollisionManager();
 	console = new j1Console();
-	dialog = new DialogManager();
+	dialog = new DialogueManager();
 	render = new j1Render();
 
 	// Ordered for awake / Start / Update
