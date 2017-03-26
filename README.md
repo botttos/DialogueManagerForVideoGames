@@ -278,8 +278,16 @@ You must create another _screen _ from UI and _text_on_screen _(you can find the
 
 # THE END
 
-As you can see, the only limit on Dialogues in video games is yourself, so let's work hard!                              If you have any questions, suggestions or feedback, you can contact me on my mail: fran152job@gmail.com
+As you can see, the only limit on Dialogues in video games is yourself, so let's work hard!                                           If you have any questions, suggestions or feedback, you can contact me on my mail: fran152job@gmail.com
 
 I hope It've been useful. 
 
 Greetings, Fran :)
+
+## More info:
+
+[Discussion about Dialogue Trees](https://www.quora.com/How-do-you-write-dialogue-trees-for-video-games)
+
+[Dialogue production and design](http://www.gamasutra.com/view/feature/132566/a_holistic_approach_to_game_.php?print=1)
+
+[Dialogue Systems](http://www.gamasutra.com/view/feature/132116/defining_dialogue_systems.php)
