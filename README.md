@@ -87,6 +87,7 @@ Exemple of dialog tree:
 
 This tutorial is built in C++. The solution is from Visual Studio, but you can work with it with .h and .cpp files in other softwares. The code is separated in different Modules that works in different areas. The Dialogue Manager is a module itself, so you can adapt this code in your own code.
 If you need to access each module you must use an external pointer called App.
+**Be sure your working directory is on "Game" folder**.
 
 ## XML Structure
 
