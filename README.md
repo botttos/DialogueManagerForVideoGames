@@ -71,7 +71,7 @@ In other games like _The Elder Scrolls IV_, the player plays a minigame to impro
 
 ![](http://lh3.ggpht.com/-iBkGkVx-ynY/U8r3jygF5sI/AAAAAAAAW9Q/zJ4tYe32HCI/w600-o/Captura-2014-07-19-21h40m11s170.png)
 
-# Dialog Tree
+# Dialogue Tree
 
 Before begin to program a Dialog Manager, We have to make a **dialog tree**. 
 
