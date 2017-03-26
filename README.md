@@ -1,3 +1,4 @@
+<?xml encoding="UTF-8" ?>
 # Introduction 
 
 Dialogues in videogames are very important, well-written dialogue is one of the most vital aspects in engaging a player with in-game characters. On this tutorial I'm going to talk about dialogues, their design structure and how to structure the code to bring It to life :)
@@ -47,7 +48,7 @@ In many cases, the player directly controls the flow of conversation, verring wi
 
 A video game that uses this system is _Façade_.
 
-
+![](https://screenshots.en.sftcdn.net/en/scrn/3342000/3342153/facade-06-700x492.jpg)  
 
 ## Systemic Interactions
 
