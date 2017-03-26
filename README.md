@@ -46,7 +46,7 @@ In a parser-driven dialogue, players must type their exact response on a text an
 The NPC then replies with one of a number of pre-set responses, or builds a response based arround the words by the player in combination with pre-set phrases. 
 In many cases, the player directly controls the flow of conversation, verring wildly off-topic whenever they wish without eliciting much surprise from the NPC.
 
-A video game that uses this system is _Facade_.
+A video game that uses this system is _Facade_ (It is not correctly written because web format reports an error, you can see the original game [here](https://en.wikipedia.org/wiki/Fa%C3%A7ade_(video_game))).
 
 ![](https://screenshots.en.sftcdn.net/en/scrn/3342000/3342153/facade-06-700x492.jpg)  
 
@@ -84,6 +84,99 @@ Exemple of dialog tree:
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Dialog_tree_example.svg/800px-Dialog_tree_example.svg.png)
 
-# Code 
+# Code
+
+This tutorial is built in C++. The solution is from Visual Studio, but you can work with it with .h and .cpp files in other softwares. The code is separated in different Modules that works in different areas. The Quest Manager is a module itself, so you can adapt this code in your own code.
+If you need to access each module you must use an external pointer called App.
 
 ## XML Structure
+
+We are goint to learn how to build a simple Non-Branching Dialogue Manager, where the dialogue changes if we speak twice with an NPC, like some _The Legend of Zelda: A Link to the Past_ NPCs do.
+
+First of all, we must structure our dialogues on a XML file thinking about how will store the data. We need an attribute "id" to associate the text with the NPC. And some dialogues, with attribute "state" that shows the correct text depending of NPC state.
+
+Here we have an example:
+
+```
+<npc id="1">
+     <dialogue state="0">
+       <text value="Hi! #{PlayerName} "/>
+       <text value="you are welcome to my Dialogue Manager research"/>
+     </dialogue>
+     <dialogue state="1">
+       <text value="I've already spoken with you. Have a nice day!"/>
+     </dialogue>
+ </npc>
+
+  ```
+
+## Dialogue Manager Classes and methods
+
+We are going to make a dialogue manager for a game with low quantity of dialogues, so instead of read all the files from XML each time we want to print it, It's more optimal load all the dialogues from XML file and allocate them in to memory.
+
+If you are going to make a bigger game or a complex dialogue system, you should read the dialogues directly from the XML because provides more organization and free memory. 
+
+Said that we get started with the code:
+
+Our DialogueManager must have a vector of dialogues
+```
+std::vector<Dialogue*> dialogues;
+ ```
+Class Dialogue is composed by an "id" to associate the dialogue with the correct NPC and a vector filled with pointers to textLine, wich is the text himself, filled from the XML file. 
+```
+class Dialogue
+{
+public:
+
+	Dialogue(int id);
+	~Dialogue();
+
+	int id;
+	std::vector<textLine*> texts;
+};
+ ```
+Each textLine must have an state, to know wich part of the text we have to print on screen, and a pointer to string, called line .
+```
+class textLine 
+{
+public:
+
+	textLine (int state, std::string line);
+	~textLine ();
+
+	int state;
+	std::string* line = nullptr;
+};
+ ```
+Knowing how does the Classes work, we can figurate our DialogueManager something like this:
+```
+class DialogueManager : public j1Module
+{
+public:
+
+	DialogueManager();
+	~DialogueManager();
+	bool Awake(pugi::xml_node& config);
+	bool Start();
+	bool PostUpdate();
+	bool BlitDialogue(int id, int state); //Called by the NPC to print their dialogue.
+
+private:
+
+	int dialogueState = 0; //Used to iterate all the dialogues on a conversation.
+
+        /*-- Data to load XML --*/
+	std::string folder;
+	std::string path;
+	pugi::xml_document dialogDataFile;
+	pugi::xml_node dialogueNode;
+        /*-- END --*/
+
+        /*--- UI element to print dialogues on screen ---*/
+	UI_element* screen = nullptr; 
+	UI_String* text_on_screen = nullptr;
+        /*-- END --*/
+
+	std::vector<Dialogue*> dialogue; //Vector of Dialogues.
+}
+  ```
