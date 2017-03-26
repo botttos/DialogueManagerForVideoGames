@@ -5,7 +5,6 @@
 #include "j1App.h"
 #include "j1SceneManager.h"
 #include "j1Input.h"
-#include "j1PathFinding.h"
 #include "j1Render.h"
 
 TestScene::TestScene() : Scene("Test Scene"), testRoom(NULL) {}

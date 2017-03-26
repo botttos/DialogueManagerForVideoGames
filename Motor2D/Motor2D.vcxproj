@@ -89,7 +89,6 @@
     <ClCompile Include="j1App.cpp" />
     <ClCompile Include="j1Audio.cpp" />
     <ClCompile Include="j1Input.cpp" />
-    <ClCompile Include="j1Pathfinding.cpp" />
     <ClCompile Include="j1PerfTimer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TestScene.cpp" />
@@ -121,7 +120,6 @@
     <ClInclude Include="j1Fonts.h" />
     <ClInclude Include="j1GameLayer.h" />
     <ClInclude Include="j1Gui.h" />
-    <ClInclude Include="j1Pathfinding.h" />
     <ClInclude Include="j1PerfTimer.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="j1SceneManager.h" />

@@ -4,9 +4,6 @@
 #include "j1Render.h"
 #include "j1Input.h"
 #include "j1CollisionManager.h"
-#include "j1Pathfinding.h"
-
-
 
 j1CollisionManager::j1CollisionManager() : j1Module()
 {
