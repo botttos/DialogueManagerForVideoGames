@@ -39,6 +39,17 @@ Other example is _Life is Strange_.
 
 ![](http://womenwriteaboutcomics.com/wp-content/uploads/2015/06/h2QVDfQ.jpg)  
 
+## Parser-Driven Dialogues
+
+In a parser-driven dialogue, players must type their exact response on a text and the system attempts to parse the input in a way It can understand. 
+The NPC then replies with one of a number of pre-set responses, or builds a response based arround the words by the player in combination with pre-*set phrases. 
+In many cases, the player directly controls the flow of conversation, verring wildly off-topic whenever they wish without eliciting much surprise from the NPC.
+
+A video game that uses this system is _Façade_.
+
+
+![](https://screenshots.en.sftcdn.net/en/scrn/3342000/3342153/facade-06-700x492.jpg)
+
 ## Systemic Interactions
 
 Some games do not feature full conversation systems, but merely simple means for interacting with characters that pass by. 
