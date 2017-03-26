@@ -66,7 +66,6 @@ Characters in the game speak nonsensical gibberish, however, so their dialogue r
 In other games like _The Elder Scrolls IV_, the player plays a minigame to improve the NPC's disposition.
 
 
-![](http://lh3.ggpht.com/-iBkGkVx-ynY/U8r3jygF5sI/AAAAAAAAW9Q/zJ4tYe32HCI/w600-o/Captura-2014-07-19-21h40m11s170.png)
 
 # Dialog Tree
 
