@@ -110,14 +110,17 @@ bool DialogManager::BlitDialog(int id, int state)
 	{
 		if (dialog[i]->id == id)
 		{
-			if (dialogState >= dialog[i]->texts.size()-1)
+			for (int j = 0; (j + dialogState) < dialog[i]->texts.size(); j++) //Search correct dialog
 			{
-				dialogState = 0;
-			}
-			if (dialog[i]->texts[dialogState]->state == state)
-			{
-				text_on_screen->Set_String((char*)dialog[i]->texts[dialogState]->line->c_str());
-				return true;
+				if (dialogState >= dialog[i]->texts.size() - 1)
+				{
+					dialogState = 0;
+				}
+				if (dialog[i]->texts[dialogState+j]->state == state)
+				{
+					text_on_screen->Set_String((char*)dialog[i]->texts[dialogState+j]->line->c_str());
+					return true;
+				}
 			}
 		}
 	}
