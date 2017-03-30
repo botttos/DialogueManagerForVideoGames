@@ -296,3 +296,5 @@ Greetings, Fran :)
 [Dialogue production and design](http://www.gamasutra.com/view/feature/132566/a_holistic_approach_to_game_.php?print=1)
 
 [Dialogue Systems](http://www.gamasutra.com/view/feature/132116/defining_dialogue_systems.php)
+
+<noscript><a href="https://www.freecounterstat.com" title="hit counter"><img src="https://counter8.fcs.ovh/private/freecounterstat.php?c=9tyj5ezqy6f1y763chzrq5qpyll1njcc" border="0" title="hit counter" alt="hit counter"></a></noscript>
